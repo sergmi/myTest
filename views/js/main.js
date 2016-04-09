@@ -418,11 +418,15 @@ for (var i = 2; i < 100; i++) {
 
 function updatePositions() {
   var items = document.querySelectorAll('.mover');
-  var documentBodyScrollTop=document.body.scrollTop;
+  var items2={};
+  var documentBodyScrollTop=document.body.scrollTop/1250;
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((documentBodyScrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    var phase = Math.sin(documentBodyScrollTop + (i % 5));
+    items2[i] = items[i].basicLeft + 100 * phase + 'px';
   }
+    for (var i = 0; i < items.length; i++) {
+    items[i].style.left = items2[i];
+  }  
 }
 
 window.addEventListener('scroll', updatePositions);
